@@ -5,7 +5,15 @@
 #include <cmath>
 #include <numeric>
 
-string BigNum::Add(string num1, string num2)
+BigNum::BigNum ( string n1, string n2)
+{
+    num1 = n1;
+    num2 = n2;
+}
+
+BigNum::~BigNum(){};
+
+string BigNum::Add()
 {
     if (num1.length() > num2.length())
     {
@@ -59,7 +67,67 @@ string BigNum::Add(string num1, string num2)
     return result;
 }
 
-string BigNum::Multiply(string num1, string num2)
+string BigNum::Subtract()
+{
+    if (num1.length() > num2.length())
+    {
+
+        string temp = num1;
+        num1 = num2;
+        num2 = temp;
+    }
+
+    reverse(num1.rbegin(), num1.rend());
+    reverse(num2.rbegin(), num2.rend());
+
+    string result;
+    int carry = 0;
+
+    int difference = num2.length() - num1.length();
+
+    int value;
+    int j = 1;
+
+    for (int i = 0; i < num1.length(); i++)
+    {
+        value = (num2[i] - '0') - (num1[i] - '0') - carry;
+        char val = (char)value;
+        if (value < 0)
+        {
+            carry = 1;
+            value += 10;
+        }
+        else
+        {
+            carry = 0;
+        }
+        value += '0';
+        val = value;
+        result += val;
+    }
+
+    for (int i = num1.length(); i < num2.length(); i++)
+    {
+        value = (num2[i] - '0') - carry;
+        char val = (char)value;
+        if (value < 0)
+        {
+            carry = 1;
+            value += 10;
+        }
+        else
+        {
+            carry = 0;
+        }
+        value += '0';
+        val = value;
+        result += val;
+    }
+    reverse(result.rbegin(),result.rend());
+    return result;
+}
+
+string BigNum::Multiply()
 {
     if (num1.length() > num2.length())
     {
@@ -113,17 +181,16 @@ string BigNum::Multiply(string num1, string num2)
     }
 
     result = "";
-
     for (int i = 0; i < add.size(); i++)
     {
-        result = Add(add[i], result);
+        BigNum a(add[i],result);
+        result = a.Add();
     }
 
     return result;
 }
 
-
-string BigNum::Divide(string num1, string num2)
+string BigNum::Divide()
 {
     if (num1.length() > num2.length())
     {
@@ -137,12 +204,6 @@ string BigNum::Divide(string num1, string num2)
     vector<string> add;
     int carry = 0;
     int value;
-
-    do 
-    {
-
-
-    } while (!num2.empty());
 
     
 }
