@@ -2,10 +2,9 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <cmath>
 #include <numeric>
 
-BigNum::BigNum ( string n1, string n2)
+BigNum::BigNum(string n1, string n2)
 {
     num1 = n1;
     num2 = n2;
@@ -17,7 +16,6 @@ string BigNum::Add()
 {
     if (num1.length() > num2.length())
     {
-
         string temp = num1;
         num1 = num2;
         num2 = temp;
@@ -47,17 +45,12 @@ string BigNum::Add()
         {
             carry = 1;
             value = value % 10;
-            value += '0';
-            val = value;
-            result += val;
         }
         else
-        {
             carry = 0;
-            value += '0';
-            val = value;
-            result += val;
-        }
+        value += '0';
+        val = value;
+        result += val;
     }
     if (carry == 1)
         result += '1';
@@ -71,7 +64,6 @@ string BigNum::Subtract()
 {
     if (num1.length() > num2.length())
     {
-
         string temp = num1;
         num1 = num2;
         num2 = temp;
@@ -123,7 +115,7 @@ string BigNum::Subtract()
         val = value;
         result += val;
     }
-    reverse(result.rbegin(),result.rend());
+    reverse(result.rbegin(), result.rend());
     return result;
 }
 
@@ -131,7 +123,6 @@ string BigNum::Multiply()
 {
     if (num1.length() > num2.length())
     {
-
         string temp = num1;
         num1 = num2;
         num2 = temp;
@@ -157,17 +148,12 @@ string BigNum::Multiply()
             {
                 carry = (value - value % 10) / 10;
                 value = value % 10;
-                value += '0';
-                val = value;
-                result += val;
             }
             else
-            {
                 carry = 0;
-                value += '0';
-                val = value;
-                result += val;
-            }
+            value += '0';
+            val = value;
+            result += val;
         }
         if (carry > 0)
         {
@@ -183,7 +169,7 @@ string BigNum::Multiply()
     result = "";
     for (int i = 0; i < add.size(); i++)
     {
-        BigNum a(add[i],result);
+        BigNum a(add[i], result);
         result = a.Add();
     }
 
@@ -192,18 +178,7 @@ string BigNum::Multiply()
 
 string BigNum::Divide()
 {
-    if (num1.length() > num2.length())
-    {
-
-        string temp = num1;
-        num1 = num2;
-        num2 = temp;
-    }
-
-    string result;
-    vector<string> add;
-    int carry = 0;
-    int value;
 
     
+
 }
